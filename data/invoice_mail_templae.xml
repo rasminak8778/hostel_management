@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="invoice_email_templates" model="mail.template">
+            <field name="name">Hostel Student Rent through invoice</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="email_to">{{object.room_student_name.email}}</field>
+            <field name="subject">Invoice {{ object.room_student_name.name }}</field>
+            <field name="body_html" type="html">
+                 <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center;background-color:
+                    #714B67; padding:0.6rem;padding-left: 35px;text-decoration:
+                    none; color: #fff; border-radius: 5px;
+                    font-size:10px;width:100%">
+                        <h2>
+                            Hi,
+                            <t t-out="object.room_student_name.name"/>
+                        </h2>
+                        <a t-attf-href="/web?#id={{ object.room_student_name.id }}&amp;view_type=form&amp;model=account.move">
+                            <button style="background-color: #4CAF50; /* Green */
+                                        border: none;
+                                        color: white;
+                                        padding: 10px 20px;
+                                        text-align: center;
+                                        text-decoration: none;
+                                        display: inline-block;
+                                        font-size: 16px;
+                                        margin: 4px 2px;
+                                        cursor: pointer;
+                                        border-radius: 5px;">
+                                View Invoice
+                            </button>
+                        </a>
+                        <br/>
+
+                        <div>
+                            <h3>
+                            Your monthly Invoice is Here!!!!
+                            </h3>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    Regards,
+                    <br/>
+                 </div>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
+
+<!--amounting in <span style="font-weight:bold;" t-out="format_amount(object.email_confirm_id.amount, object.company_id.currency_id)"></span>-->

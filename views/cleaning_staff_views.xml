@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="cleaning_service_action" model="ir.actions.act_window">
+        <field name="name">Cleaning Service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cleaning.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!--    form view for cleaning service-->
+    <record id="cleaning_service_view_form" model="ir.ui.view">
+        <field name="name">cleaning.service.view.form</field>
+        <field name="model">cleaning.service</field>
+        <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" satusbar_visibility="new,assigned,done"/>
+                        <button name="action_assign" string="Assign" type="object" class="oe_highlight"/>
+                        <button name="action_complete" string="Complete" type="object" class="oe_highlight"  invisible="state not in ['assigned']"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="room_id"/>
+                            <field name="start_time"/>
+                            <field name="cleaning_staff_id"/>
+                            <field name="company_id"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids"/>
+                    </div>
+                </form>
+        </field>
+    </record>
+<!--    tree view for cleaning service-->
+    <record id="cleaning_service_view_tree" model="ir.ui.view">
+        <field name="name">cleaning.service.view.form</field>
+        <field name="model">cleaning.service</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="room_id"/>
+                    <field name="start_time"/>
+                </tree>
+        </field>
+    </record>
+    <record id="cleaning_service_search" model="ir.ui.view">
+        <field name="name">cleaning.service.search</field>
+        <field name="model">cleaning.service</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Assigned" name="filter_assigned" domain="[('state','=', 'assigned')]" />
+                <filter string="Done" name="filter_done" domain="[('state','=', 'done')]" />
+                 <separator/>
+                <filter string="Start time Today"
+                        name="start_time"
+                        domain="[('start_time','=',((context_today()).strftime('%%Y-%%m-%%d')))]"/>
+                <filter string="Start Date Tomorrow"
+                        name="start_time_tomorrow"
+                        domain="[('start_time','=',((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d')))]"/>
+                    <group expand="0" string="Group By">
+                    <filter string="Company" name="company_id"
+                            context="{'group_by': 'company_id'}"/>
+                    </group>
+                    <separator/>
+                    <filter string="Cleaning Staff" name="cleaning_staff_id"
+                            context="{'group_by': 'cleaning_staff_id'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

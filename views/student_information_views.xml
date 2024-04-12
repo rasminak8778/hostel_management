@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--    action for Student Information-->
+    <record id="student_information_record" model="ir.actions.act_window">
+        <field name="name">Student Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.information</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!--    tree view for student information-->
+    <record id="student_information_view_tree" model="ir.ui.view">
+        <field name="name">student information tree</field>
+        <field name="model">student.information</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="student"/>
+                <field name="dob"/>
+                <field name="age"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--    form view for student information-->
+    <record id="student_information_form_view" model="ir.ui.view">
+        <field name="name">student.information.form.view</field>
+        <field name="model">student.information</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <header>
+<!--                    <field name="invoice_status" widget="statusbar"-->
+<!--                           statusbar_visible="pending,done"/>-->
+                    <button name="action_vacate" string="Vacate"
+                            type="object" class="oe_stat_button"
+                            invisible="invoice_status in ['pending']">
+<!--                        <field name="active"/>-->
+                    </button>
+                    <button name="action_alot_button" string="Alot Room"
+                            type="object" class="oe_highlight"
+                            invisible='room_id'/>
+
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived"
+                    bg_color="text-bg-danger"
+                        invisible="active"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_invoice" icon="fa-bars"
+                                invisible="invoice_count == 0">
+                            <field string="Invoices" name="invoice_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="student"/>
+                    </h1>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+                       <group>
+                           <field name="name"/>
+                           <field name="amount"/>
+                           <field name="dob"/>
+                           <field name="age"/>
+                           <field name="active"/>
+                           <field name="user_id"/>
+                           <field name="room_id" widget="many2one_tags"/>
+<!--                           <field name="amount"/>-->
+                       </group>
+                        <group>
+                            <field name="invoice_status"/>
+                            <field name="email" widget="email"/>
+                            <field name="receive_mail"/>
+                            <field name="company_id"/>
+                            <field name="partner_id"/>
+                        </group>
+                    </group>
+                   <notebook>
+                       <page string="Contact Address">
+                           <group>
+                               <label for="street" string="Address"/>
+                               <div>
+                                   <div class="o_address_format">
+                                       <field name="address"
+                                              placeholder="Street..."/>
+                                       <group>
+                                           <field name="street"
+                                                  placeholder="Street 2..." />
+                                           <field name="city"
+                                                  placeholder="City" />
+                                           <field name="state_id"
+                                                  placeholder="State"/>
+                                           <field name="zip"
+                                                  placeholder="ZIP"/>
+                                           <field name="country_id"
+                                                  placeholder="Country"/>
+                                       </group>
+                                   </div>
+                               </div>
+                           </group>
+                       </page>
+                   </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="activity_ids"/>
+                </div>
+
+
+            </form>
+        </field>
+    </record>
+<!--    search for group and filter-->
+     <record id="student_information_search" model="ir.ui.view">
+        <field name="name">student.information.search</field>
+        <field name="model">student.information</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Receive mail Status" name="receive_mail"
+                        domain="[('receive_mail','=', True)]"/>
+                <separator/>
+                <filter string="Archive" name="active"
+                            domain="[('active','=',not set)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Individual" name="name"
+                            context="{'group_by': 'name'}"/>
+                    <filter string="Rooms Details" name="room_id"
+                            context="{'group_by': 'room_id'}"/>
+                    <separator/>
+                    <filter string="Company" name="company_id"
+                            context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
+

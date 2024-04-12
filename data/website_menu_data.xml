@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data noupdate="1">
+       <record id="menu_student_details" model="website.menu">
+           <field name="name">Student Registration</field>
+           <field name="url">/student</field>
+           <field name="parent_id" ref="website.main_menu"/>
+           <field name="sequence">20</field>
+       </record>
+   </data>
+    <data noupdate="1">
+       <record id="menu_room_details" model="website.menu">
+           <field name="name">Hostel Rooms</field>
+           <field name="url">/room</field>
+           <field name="parent_id" ref="website.main_menu"/>
+           <field name="sequence">10</field>
+       </record>
+   </data>
+</odoo>

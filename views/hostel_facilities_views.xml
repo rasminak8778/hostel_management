@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--    action for facilities-->
+    <record id="hostel_facilities_action" model="ir.actions.act_window">
+        <field name="name">Hostel Facilities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hostel.facilities</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!--    form view for facilities-->
+    <record id="hostel_facilities_view_form" model="ir.ui.view">
+        <field name="name">hostel.facilities.view.form</field>
+        <field name="model">hostel.facilities</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="charge"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!--    tree view for facilities-->
+    <record id="hostel_facilities_view_tree" model="ir.ui.view">
+        <field name="name">hostel.facilities.view.tree</field>
+        <field name="model">hostel.facilities</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="charge"/>
+            </tree>
+        </field>
+    </record>
+    <record id="hostel_facilities_search" model="ir.ui.view">
+        <field name="name">hostel.facilities.search</field>
+        <field name="model">hostel.facilities</field>
+        <field name="arch" type="xml">
+            <search>
+                    <group expand="0" string="Group By">
+                    <filter string="Facility Types" name="name"
+                            context="{'group_by': 'name'}"/>
+                    </group>
+            </search>
+        </field>
+    </record>
+</odoo>

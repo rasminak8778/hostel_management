@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="student_wizard_action" model="ir.actions.act_window">
+        <field name="name">Students Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hostel_management.student_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="leave_request_wizard_action" model="ir.actions.act_window">
+        <field name="name">Leave Request Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">leave.request.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hostel_management.leave_request_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+<!-- root menu for hostel management  -->
+    <menuitem id="hostel_menu_root"
+              name="Hostel Management"
+
+    />
+<!--   main menu for Hostel Rooms-->
+    <menuitem id="hostel_menu_main"
+              name="Hostel Rooms"
+              parent="hostel_menu_root"
+    />
+<!--menu for Rooms-->
+    <menuitem id="hostel_menu_first"
+              name="Rooms"
+              parent="hostel_menu_main"
+              action="room_management_action"
+
+    />
+<!--    menu for Student Information -->
+    <menuitem id="hostel_menu_sub"
+              name="Student Information"
+              parent="hostel_menu_main"
+              action="student_information_record"
+    />
+<!--        menu for Facilities -->
+    <menuitem id="hostel_menu_root_subbb"
+              name="Configuration"
+              sequence="20"
+              parent="hostel_menu_root"
+    />
+    <menuitem id="hostel_facilities_menu_sub"
+              name="Facilities"
+              parent="hostel_menu_root_subbb"
+              action="hostel_facilities_action"
+    />
+<!--    menu for leave request-->
+    <menuitem id="leave_request_menu_sub"
+              name="Leave Request"
+              parent="hostel_menu_root_subbb"
+              action="leave_request_action"
+    />
+    <menuitem id="cleaning_main_menu_sub"
+              name="Cleaning Service"
+              parent="hostel_menu_root_subbb"
+              action="cleaning_service_action"
+    />
+    <menuitem id="hostel_menu_root_report_sub"
+              name="Report"
+              parent="hostel_menu_root"
+              sequence="10"
+    />
+
+    <menuitem id="student_wizard_menu"
+       name="Students Report"
+       action="student_wizard_action"
+       parent="hostel_management.hostel_menu_root_report_sub"/>
+
+    <menuitem id="leave_request_wizard_menu"
+       name="Leave Request Report"
+       action="leave_request_wizard_action"
+       parent="hostel_management.hostel_menu_root_report_sub"/>
+</odoo>

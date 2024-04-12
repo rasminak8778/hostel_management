@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="online_room_view_form">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+
+                <!--               <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">-->
+                <div class="container">
+                    <form action="/view/room/details/" method="post"
+                          enctype="multipart/form-data" class="o_mark_required"
+                          data-mark="*" data-model_name="" data-success-page="">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()"/>
+                        <br/>
+                        <h2 style="text-align: center;">Hostel Rooms</h2>
+                        <br/><br/>
+                        <div class="row">
+                            <t t-foreach="latest_rooms" t-as="rec">
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                                    <a t-att-href="'/room/details/%s' %rec.id">
+                                        <div class="btn btn-secondary o_default_snippet_template"
+                                             style="width:300px">
+                                            <div>
+                                                <span t-out="rec.name"/>
+                                            </div>
+                                            <div>
+                                                <span class="s_website_form_label_content">
+                                                    Monthly Rent
+                                                </span>
+                                                <span t-out="rec.monthly_amount"
+                                                      style="font-size:20px;color:black;"/>
+                                            </div>
+                                            <div>
+                                                <t t-if="rec.state != 'full'">
+                                                    <span class="s_website_form_label_content">
+                                                        Available Beds
+                                                    </span>
+                                                    <span t-esc="rec.available_bed"
+                                                          style="font-size:20px;color:white;"/>
+                                                </t>
+                                            </div>
+                                            <div>
+                                                <img t-att-src="image_data_uri(rec.room_img) if rec.room_img else ''"
+                                                     style="max-height:150pt;max-width:500%"/>
+                                            </div>
+                                            <br/>
+                                            <t t-if="rec.state == 'full'">
+                                                <div class="form-control" style="background-color: #CC2D30;font-size:18px;color:black;">Room Filled</div>
+                                            </t>
+                                        </div>
+                                    </a>
+                                </div>
+                            </t>
+                            <br/>
+                            <br/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="latest_room_snippet" name="Hostel Rooms">
+           <section class="container dynamic_snippet_blog">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h3 style="text-align: center;bold: True">Hostel Rooms</h3>
+                       <div id="carousel"/>
+                   </div>
+               </div>
+           </section>
+        </template>
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+    <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]" position="after">
+           <t t-snippet="hostel_management.latest_room_snippet" t-thumbnail="/hostel_management/static/description/img.png"/>
+    </xpath>
+    </template>
+</odoo>

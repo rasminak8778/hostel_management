@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <t t-name="hostel_management.latest_room_snippet_carousel">
+        <t t-set="uiq" t-value="data[0]['num']"/>
+        <div t-attf-id="room_carousel{{uiq}}" class="container carousel slide"
+             data-bs-ride="carousel" t-att-data-bs-interval="interval">
+            <br/><br/>
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <t t-foreach="data" t-as="record" t-key="record.id">
+                    <div t-att-class="record.is_active ? 'carousel-item active' : 'carousel-item'">
+                        <div class="row">
+                            <t t-foreach="record" t-as="rec" t-key="rec.id">
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                                    <a t-attf-href="/rooms/{{rec.id}}">
+                                        <div class="btn btn-secondary o_default_snippet_template"
+                                             style="width:300px">
+                                            <div>
+                                                <span t-esc="rec.name"/>
+                                            </div>
+                                            <div>
+                                                <span class="s_website_form_label_content">
+                                                    Monthly Rent
+                                                </span>
+                                                <span t-esc="rec.monthly_amount"
+                                                      style="font-size:20px;color:black;bold: True"/>
+                                            </div>
+                                            <div>
+                                                <t t-if="rec.state != 'full'">
+                                                    <span class="s_website_form_label_content">
+                                                        Available Beds
+                                                    </span>
+                                                    <span t-esc="rec.available_bed"
+                                                          style="font-size:20px;color:white;"/>
+                                                </t>
+                                            </div>
+                                            <div>
+                                                <img t-attf-src="data:image/png;base64,{{rec.room_img}}"
+                                                     style="max-height:150pt;max-width:500%"/>
+                                            </div>
+                                            <t t-if="rec.state == 'full'">
+                                                <div class="form-control"
+                                                     style="background-color: #CC2D30;font-size:14px;color:black;">
+                                                    Room Filled
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </t>
+                        </div>
+                    </div>
+                </t>
+                <br/>
+                <br/>
+            </div>
+            <a class="carousel-control-prev o_we_no_overlay o_not_editable" t-attf-href="#room_carousel{{uiq}}"
+               data-bs-slide="prev" role="button" aria-label="Previous"
+               title="Previous" style="position: absolute;width: 2%;top: 30px;">
+                <span class="fa fa-chevron-circle-left fa-2x" style="color:black;"/>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next o_we_no_overlay o_not_editable" t-attf-href="#room_carousel{{uiq}}"
+               data-bs-slide="next" role="button" aria-label="Next"
+               title="Next" style="position: absolute;width: 2%;top: 30px;">
+                <span class="fa fa-chevron-circle-right fa-2x" style="color:black;"/>
+                <span class="visually-hidden">Next</span>
+            </a>
+            <br/>
+            <br/>
+        </div>
+    </t>
+</template>
+

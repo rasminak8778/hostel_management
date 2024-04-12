@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record id="student_invoice_email_template" model="mail.template">
+            <field name="name">Hostel Room Rent :Send by Email</field>
+            <field name="model_id" ref="hostel_management.model_student_information"/>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="subject"> Invoice (Ref {{ object.name }})</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+<!--                 <t t-set="invoice_id" t-value="email_values.get('invoice_id')"/>-->
+                    <div style="margin: 0px; padding: 0px;">
+                        <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                            Dear <t t-out="object.name"/>,
+                            <br/>
+
+                            amounting in <span style="font-weight:bold;" t-out="format_amount(object.amount, object.company_id.currency_id)"></span>
+
+<!--                      <t t-if="object.name">-->
+<!--                         invoice <span style="font-weight:bold;" t-out="object.invoice_id.name or ''"></span>-->
+<!--                      </t>-->
+
+
+                        </p>
+                    </div>
+</div>
+            </field>
+        </record>
+    </data>
+</odoo>

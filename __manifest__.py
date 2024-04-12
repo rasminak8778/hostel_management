@@ -1,0 +1,56 @@
+{
+    'name': 'Hostel Management',
+    'version': '17.0.1.0.0',
+    'description': 'The Details regarding Hostel Rooms',
+    'category': 'Sales/Hostel_Management',
+    'summary': 'An Overview of Hostel rooms and its management',
+    'installable': True,
+    'application': True,
+    'depends': [
+        'base',
+        'contacts',
+        'mail',
+        'account',
+        'stock'
+    ],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'report/student_report_views.xml',
+        'report/ir_actions_student_report_templates.xml',
+        'report/ir_actions_report_leave_templates.xml',
+        'report/leave_report_views.xml',
+        'data/facilities_data.xml',
+        'data/rent_product_data.xml',
+        'data/mail_template.xml',
+        'data/invoice_mail_templae.xml',
+        'data/cron.xml',
+        # 'data/automation_data.xml',
+        'data/room_sequence.xml',
+        'data/student_sequence.xml',
+        'data/website_menu_data.xml',
+        'wizard/student_wizard_view.xml',
+        'wizard/leave_request_views.xml',
+        'views/room_management_views.xml',
+        'views/student_information_views.xml',
+        'views/hostel_facilities_views.xml',
+        'views/leave_request_views.xml',
+        'views/cleaning_staff_views.xml',
+        'views/student_inherit.xml',
+        'views/student_page_views.xml',
+        'views/submit_views.xml',
+        'views/student_home_page_views.xml',
+        'views/room_details_form_views.xml',
+        'views/snippet/s_latest_room.xml',
+        'views/hostel_management_menu.xml',
+    ],
+    'assets':{
+        'web.assets_backend': [
+            'hostel_management/static/src/js/action_manager.js',
+            ],
+        'web.assets_frontend':[
+            'hostel_management/static/src/js/latest_room.js',
+            'hostel_management/static/src/xml/latest_room.xml',
+        ]
+    }
+}

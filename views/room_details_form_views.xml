@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="online_room_details_form">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+<!--                <section class="s_website_form" data-vcss="001"-->
+<!--                         data-snippet="s_website_form">-->
+                    <br/><br/><br/>
+                    <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h2 style="text-align: center;">Room Overview</h2>
+                            <input type="hidden" name="csrf_token"
+                                   t-att-value="request.csrf_token()"/>
+                            <br/>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 300px"
+                                               for="studio1">
+                                            <span class="s_website_form_label_content">
+                                                Room Number
+                                            </span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <t t-foreach="data" t-as="rec">
+                                                <input id="name" type="char"
+                                                       t-att-value="rec.name"
+                                                       class="form-control s_website_form_input"
+                                                       name="name"
+                                                       style="width: 200px;"
+                                                       readonly="1"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field
+                               s_website_form_required" data-type="char"
+                                     data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto
+                                       s_website_form_label"
+                                               style="width: 300px"
+                                               for="studio1">
+                                            <span class="s_website_form_label_content">
+                                                Room Type
+                                            </span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select name="room_type"
+                                                    class="form-control s_website_form_input"
+                                                    style="width: 200px;"
+                                                    readonly="1">
+                                                <t t-foreach="data or []"
+                                                   t-as="type">
+                                                    <option t-att-value="type.id">
+                                                        <span t-field="type.room_type"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="form-group col-12
+                               s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 300px"
+                                               for="studio1">
+                                            <span class="s_website_form_label_content">
+                                                Bed Count
+                                            </span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <t t-foreach="data" t-as="rec">
+                                                <input id="no_of_bed"
+                                                       type="integer"
+                                                       t-att-value="rec.no_of_bed"
+                                                       class="form-control s_website_form_input"
+                                                       name="no_of_bed"
+                                                       style="width: 200px;"
+                                                       readonly="1"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 300px"
+                                               for="studio1">
+                                            <span class="s_website_form_label_content">
+                                                Monthly Amount
+                                            </span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <t t-foreach="data" t-as="rec">
+                                                <input id="monthly_amount"
+                                                       type="integer"
+                                                       t-att-value="rec.monthly_amount"
+                                                       class="form-control s_website_form_input"
+                                                       name="monthly_amount"
+                                                       style="width: 200px;"
+                                                       readonly="1"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <br/><br/>
+                            <img t-attf-src="data:image/png;base64,{{rec.room_img}}"
+                                             style="max-height:180pt;max-width:1000%"/>
+<!--                            <img t-att-src="image_data_uri(rec.room_img) if-->
+<!--                            rec.room_img else ''"-->
+<!--                                 style="max-height:150pt;max-width:500%"/>-->
+                        </div>
+                    </div>
+                    </div>
+<!--                </section>-->
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_leave">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Leave Request Report</h2>
+                    <tr>
+                        <td>
+                            <t t-if="data['count'] == 0">
+                                <td>Student</td>
+                                <td>:</td>
+                                <t t-set="i" t-value="data['report'][0]"/>
+                                <span t-out="i['std']"/>
+                            </t>
+                        </td>
+                        <br/>
+                    </tr>
+                    <tr>
+                        <td>
+                            <t t-if="data['counts'] == 0">
+                                <td>Room</td>
+                                <td>:</td>
+                                <t t-set="i" t-value="data['report'][0]"/>
+                                <span t-out="i['name']"/>
+                            </t>
+                        </td>
+                    </tr>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SL.No</th>
+                                <t t-if="data['count'] > 1">
+                                    <th>Student</th>
+                                </t>
+                                <t t-if="data['counts'] > 1">
+                                    <th>Room</th>
+                                </t>
+                                <th>Start Date</th>
+                                <th>Arrival Date</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data['report']" t-as="report">
+                                <tr>
+                                    <td>
+                                        <span t-out="report_index+1"/>
+                                    </td>
+                                    <t t-if="data['count'] > 1">
+                                        <td>
+                                            <span t-out="report['std']"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="data['counts'] > 1">
+                                        <td>
+                                            <span t-out="report['name']"/>
+                                        </td>
+                                    </t>
+                                    <td>
+                                        <span t-out="report['leave_date']"/>
+                                    </td>
+                                    <td>
+                                        <span t-out="report['arrival_date']"/>
+                                    </td>
+                                    <td>
+                                        <span t-out="report['duration']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
